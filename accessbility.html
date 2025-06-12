@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessibility | DigiLearn</title>
+    <link rel="stylesheet" href="css/acessbility.css" />
+  </head>
+  <body class="medium">
+    <!-- Header -->
+    <header class="header">
+      <h1 id="siteTitle">DigiLearn</h1>
+      <nav class="navbar">
+        <a id="navHome" href="index.html">Home</a>
+        <a id="navTutorials" href="tutorials.html">Tutorials</a>
+        <a id="navChat" href="chatbot.html">AI Chat</a>
+        <a id="navFeedback" href="feedback.html">Feedback</a>
+      </nav>
+    </header>
+
+    <!-- Main Section -->
+    <main class="container">
+      <div class="top-bar">
+        <h2 id="accessTitle">Accessibility Features</h2>
+        <div class="controls">
+          <select id="languageSelector">
+            <option value="en">English</option>
+            <option value="hi">हिन्दी</option>
+            <option value="bn">বাংলা</option>
+            <option value="od">ଓଡ଼ିଆ</option>
+          </select>
+          <button onclick="setFontSize('small')">A-</button>
+          <button onclick="setFontSize('medium')">A</button>
+          <button onclick="setFontSize('large')">A+</button>
+        </div>
+      </div>
+
+      <!-- Accessibility List -->
+      <ul class="features">
+        <li id="accessVoice">Voice Command Support (Coming Soon)</li>
+        <li id="accessLang">
+          Multi-language Interface (English, Hindi, Bengali, Odia)
+        </li>
+        <li id="accessFont">Adjustable Font Size for Readability</li>
+      </ul>
+
+      <p id="accessNote" class="note">
+        These features are designed to help parents and elderly users access
+        digital tools easily.
+      </p>
+    </main>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+{
+  "siteTitle": "DigiLearn",
+  "tagline": "Empowering Digital Literacy!",
+  "navHome": "Home",
+  "navTutorials": "Tutorials",
+  "navChat": "AI Chat",
+  "navFeedback": "Feedback",
+  "tutorialsTitle": "Digital Tool Tutorials",
+  "tutorials": {
+    "whatsapp": {
+      "title": "Learn WhatsApp",
+      "desc": "Send messages, share media and make calls."
+    },
+    "paytm": {
+      "title": "Learn Paytm",
+      "desc": "Make payments, recharge and manage your wallet."
+    },
+    "maps": {
+      "title": "Learn Google Maps",
+      "desc": "Find locations and get directions easily."
+    }
+  },
+  "chatTitle": "Ask DigiBuddy",
+"chatPlaceholder": "Type your question...",
+"chatButton": "Send",
+"feedbackTitle": "Your Feedback",
+"feedbackName": "Your Name (Optional)",
+"feedbackAge": "Your Age Group",
+"feedbackMsg": "Your Suggestions or Feedback",
+"feedbackSubmit": "Submit",
+"feedbackThanks": "Thank you for your valuable feedback!",
+"accessTitle": "Accessibility Features",
+"accessVoice": "Voice Command Support (Coming Soon)",
+"accessLang": "Multi-language Interface (English, Hindi)",
+"accessFont": "Adjustable Font Size for Readability",
+"accessNote": "These features are designed to help parents and elderly users access digital tools easily."
+
+
+
+}

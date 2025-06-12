@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Chat | DigiLearn</title>
+    <link rel="stylesheet" href="css/chatbot.css" />
+  </head>
+  <body class="medium">
+    <!-- Header -->
+    <header class="header">
+      <h1 id="siteTitle">DigiLearn</h1>
+      <nav class="navbar">
+        <a id="navHome" href="index.html">Home</a>
+        <a id="navTutorials" href="tutorials.html">Tutorials</a>
+        <a id="navChat" href="chatbot.html">AI Chat</a>
+        <a id="navFeedback" href="feedback.html">Feedback</a>
+      </nav>
+    </header>
+
+    <!-- Main Chat Section -->
+    <main class="container">
+      <div class="top-bar">
+        <div class="theme-toggle">
+          <label>
+            <input type="checkbox" id="themeSwitcher" />
+            🌙 Dark Mode
+          </label>
+        </div>
+
+        <h2 id="chatTitle">Ask DigiBuddy</h2>
+        <div class="controls">
+          <select id="languageSelector">
+            <option value="en">English</option>
+            <option value="hi">हिन्दी</option>
+            <option value="bn">বাংলা</option>
+            <option value="od">ଓଡ଼ିଆ</option>
+          </select>
+          <button onclick="setFontSize('small')">A-</button>
+          <button onclick="setFontSize('medium')">A</button>
+          <button onclick="setFontSize('large')">A+</button>
+        </div>
+      </div>
+
+      <div id="chatBox" class="chat-window">
+        <!-- Messages appear here -->
+      </div>
+
+      <div class="input-area">
+        <input type="text" id="userInput" placeholder="Type your question..." />
+        <button id="sendBtn">Send</button>
+      </div>
+    </main>
+
+    <script>
+      const sendBtn = document.getElementById("sendBtn");
+      const input = document.getElementById("userInput");
+      const chatBox = document.getElementById("chatBox");
+      const languageSelector = document.getElementById("languageSelector");
+      const responses = {
+        en: {
+          hello: "Hello! How can I assist you today?",
+          whatsapp: "WhatsApp is used for messaging, calls, and media sharing.",
+          whatsapp_install:
+            "To install WhatsApp, open Play Store, search 'WhatsApp', and tap Install.",
+          whatsapp_use:
+            "Open WhatsApp, tap a contact, and start chatting or calling.",
+          whatsapp_status:
+            "You can share updates in the 'Status' tab using photos, videos, or text.",
+          whatsapp_group:
+            "To create a group, tap menu > 'New Group', then select contacts.",
+          whatsapp_call:
+            "To call, open a chat and tap the phone or video icon.",
+          whatsapp_settings:
+            "You can manage privacy and account settings from the 'Settings' menu.",
+          whatsapp_security:
+            "WhatsApp uses end-to-end encryption. Never share OTPs or personal details.",
+
+          paytm:
+            "Paytm is used for online payments, mobile recharge, and bill payments.",
+          paytm_install:
+            "To install Paytm, search in Play Store, install and sign in using your mobile number.",
+          paytm_recharge:
+            "Open Paytm, tap 'Recharge & Pay Bills', select your service, and follow steps.",
+          paytm_payment:
+            "To pay: tap 'Scan & Pay', scan QR, enter amount, then confirm.",
+          paytm_wallet:
+            "Paytm Wallet lets you store money and use it quickly for payments.",
+          paytm_upi:
+            "You can send/receive money using UPI by linking your bank account.",
+          paytm_ticket:
+            "Book train, bus, or movie tickets from the 'Tickets' section.",
+          paytm_security:
+            "Use app lock, don't share OTPs, and always verify the recipient.",
+
+          maps: "Google Maps helps you find directions, places, and nearby locations.",
+          maps_use:
+            "Open Google Maps, type your destination, tap 'Directions', and choose a route.",
+          maps_traffic:
+            "Use the 'Traffic' layer to view real-time congestion and travel times.",
+          maps_voice:
+            "Enable voice navigation by tapping 'Start' after selecting a route.",
+          maps_nearby:
+            "Tap 'Explore' to find restaurants, ATMs, petrol pumps, and more nearby.",
+          maps_offline:
+            "You can download maps for offline use via Menu > Offline maps.",
+          maps_share:
+            "You can share your location with friends using the 'Location sharing' option.",
+
+          default:
+            "I'm here to help! Try asking about WhatsApp, Paytm, or Maps.",
+        },
+
+        hi: {
+          hello: "नमस्ते! मैं आपकी कैसे मदद कर सकता हूँ?",
+          whatsapp: "व्हाट्सएप से आप मैसेज, कॉल और मीडिया साझा कर सकते हैं।",
+          whatsapp_install:
+            "Play Store खोलें, 'WhatsApp' सर्च करें और इंस्टॉल करें।",
+          whatsapp_use:
+            "WhatsApp खोलें, किसी संपर्क को टैप करें और चैट/कॉल करें।",
+          whatsapp_status:
+            "'Status' टैब में फोटो, वीडियो या टेक्स्ट साझा करें।",
+          whatsapp_group: "मेनू > 'New Group' पर टैप करें और संपर्क चुनें।",
+          whatsapp_call: "किसी चैट में कॉल आइकन दबाकर कॉल करें।",
+          whatsapp_settings:
+            "'Settings' में जाकर गोपनीयता और अकाउंट सेटिंग्स बदल सकते हैं।",
+          whatsapp_security:
+            "WhatsApp एंड-टू-एंड एन्क्रिप्शन का उपयोग करता है। OTP साझा न करें।",
+
+          paytm: "पेटीएम ऑनलाइन भुगतान, रिचार्ज और बिल के लिए है।",
+          paytm_install:
+            "Play Store से Paytm इंस्टॉल करें और मोबाइल नंबर से साइन इन करें।",
+          paytm_recharge:
+            "'Recharge & Pay Bills' टैब में जाकर सेवा चुनें और रिचार्ज करें।",
+          paytm_payment:
+            "'Scan & Pay' पर टैप करें, QR स्कैन करें और पेमेंट करें।",
+          paytm_wallet:
+            "Paytm Wallet में पैसे स्टोर करके तुरंत पेमेंट कर सकते हैं।",
+          paytm_upi:
+            "आप UPI से पैसे भेज या प्राप्त कर सकते हैं। बैंक अकाउंट लिंक करें।",
+          paytm_ticket: "'Tickets' टैब से ट्रेन, बस या मूवी टिकट बुक करें।",
+          paytm_security: "App लॉक का उपयोग करें, और OTP किसी से साझा न करें।",
+
+          maps: "गूगल मैप्स स्थान खोजने और दिशा देने में मदद करता है।",
+          maps_use:
+            "Google Maps खोलें, गंतव्य टाइप करें और 'Directions' टैप करें।",
+          maps_traffic: "'Traffic' विकल्प से लाइव ट्रैफिक देख सकते हैं।",
+          maps_voice: "'Start' टैप कर के वॉयस नेविगेशन चालू करें।",
+          maps_nearby: "'Explore Nearby' से ATM, होटल आदि खोजें।",
+          maps_offline: "मेनू > Offline Maps से मैप डाउनलोड कर सकते हैं।",
+          maps_share: "'Location sharing' से अपने स्थान को साझा करें।",
+
+          default: "कृपया WhatsApp, Paytm या Maps के बारे में पूछें।",
+        },
+        bn: {
+          hello: "হ্যালো! আমি কিভাবে সাহায্য করতে পারি?",
+          whatsapp:
+            "WhatsApp ব্যবহৃত হয় বার্তা, কল এবং মিডিয়া শেয়ারের জন্য।",
+          whatsapp_install: "Play Store খুলে 'WhatsApp' সার্চ করে ইনস্টল করুন।",
+          whatsapp_use:
+            "WhatsApp খুলুন, কনট্যাক্টে ট্যাপ করুন এবং চ্যাট/কল করুন।",
+          whatsapp_status: "'Status' অপশনে ছবি, ভিডিও অথবা লেখা পোস্ট করুন।",
+          whatsapp_group: "মেনু > 'New Group' ট্যাপ করে কনট্যাক্ট বেছে নিন।",
+          whatsapp_call: "চ্যাটে কল আইকনে ট্যাপ করে কল করুন।",
+          whatsapp_settings:
+            "'Settings' থেকে প্রাইভেসি এবং অ্যাকাউন্ট সেটিং বদলান।",
+          whatsapp_security:
+            "WhatsApp এনক্রিপশন ব্যবহার করে। OTP কারো সাথে শেয়ার করবেন না।",
+
+          paytm:
+            "Paytm অনলাইন পেমেন্ট, রিচার্জ এবং বিল পেমেন্টের জন্য ব্যবহৃত হয়।",
+          paytm_install: "Play Store থেকে Paytm ডাউনলোড করে ইনস্টল করুন।",
+          paytm_recharge:
+            "'Recharge & Pay Bills' ট্যাপে গিয়ে পরিষেবা বেছে নিন।",
+          paytm_payment:
+            "'Scan & Pay' ট্যাপে ট্যাপ করে QR স্ক্যান করে পেমেন্ট করুন।",
+          paytm_wallet:
+            "Paytm Wallet-এ টাকা সংরক্ষণ করে দ্রুত পেমেন্ট করা যায়।",
+          paytm_upi:
+            "আপনি UPI-এর মাধ্যমে টাকা পাঠাতে পারেন। অ্যাকাউন্ট লিঙ্ক করুন।",
+          paytm_ticket:
+            "'Tickets' বিভাগ থেকে ট্রেন, বাস বা মুভি টিকিট বুক করুন।",
+          paytm_security:
+            "App Lock ব্যবহার করুন এবং OTP কারো সাথে শেয়ার করবেন না।",
+
+          maps: "Google Maps আপনাকে স্থান খুঁজে পেতে এবং রুট দেখতে সাহায্য করে।",
+          maps_use: "গন্তব্য টাইপ করে 'Directions' নির্বাচন করুন।",
+          maps_traffic: "'Traffic' অপশন চালু করে রিয়েল-টাইম ট্রাফিক দেখুন।",
+          maps_voice: "'Start' ট্যাপে ট্যাপ করে ভয়েস ন্যাভিগেশন চালু করুন।",
+          maps_nearby:
+            "'Explore' ফিচার ব্যবহার করে কাছাকাছি ATM, রেস্টুরেন্ট খুঁজুন।",
+          maps_offline: "Offline maps ডাউনলোড করতে মেনু > Offline maps এ যান।",
+          maps_share:
+            "আপনার লোকেশন শেয়ার করতে 'Location sharing' ব্যবহার করুন।",
+
+          default: "WhatsApp, Paytm অথবা Maps সম্পর্কে প্রশ্ন করুন।",
+        },
+        od: {
+          hello: "ନମସ୍କାର! ମୁଁ ଆପଣଙ୍କୁ କିପରି ସାହାଯ୍ୟ କରିପାରିବି?",
+          whatsapp: "WhatsApp ବ୍ୟବହାର ହୁଏ ମେସେଜ୍, କଲ୍ ଏବଂ ମିଡିଆ ପାଇଁ।",
+          whatsapp_install: "Play Store ରୁ WhatsApp ଇନଷ୍ଟଲ୍ କରନ୍ତୁ।",
+          whatsapp_use:
+            "WhatsApp ଖୋଲନ୍ତୁ, ଯେଉଁ ମିତ୍ରକୁ ଚାହାଁନ୍ତି ସେଠାରେ ଟାପ୍ କରନ୍ତୁ।",
+          whatsapp_status:
+            "'Status' ରେ ଫଟୋ, ଭିଡିଓ କିମ୍ବା ଟେକ୍ସ୍ଟ ଅପଲୋଡ୍ କରନ୍ତୁ।",
+          whatsapp_group: "ମେନୁ → New group → ମିତ୍ର ଚୟନ କରନ୍ତୁ।",
+          whatsapp_call: "କାହାସିଙ୍ଗ ବି chat ରେ ତଳେ call icon ଦେଖି ଟାପ୍ କରନ୍ତୁ।",
+          whatsapp_security: "OTP କାହାସିଙ୍ଗ ସହ ଶେୟାର୍ ନକରନ୍ତୁ, ସତର୍କ ରୁହନ୍ତୁ।",
+
+          paytm: "Paytm ବ୍ୟବହାର ହୁଏ ପେମେଣ୍ଟ ଏବଂ ବିଲ ପାଇଁ।",
+          paytm_install:
+            "Play Store ରୁ Paytm ଇନଷ୍ଟଲ୍ କରନ୍ତୁ, ମୋବାଇଲ୍ ନମ୍ବର ଦ୍ୱାରା ଲଗ୍ଇନ୍ କରନ୍ତୁ।",
+          paytm_recharge:
+            "Recharge ବା Bill ପାଇଁ 'Recharge & Pay Bills' ରେ ଯାନ୍ତୁ।",
+          paytm_payment:
+            "'Scan & Pay' ଟାପ୍ କରନ୍ତୁ, QR ଉପରେ scan କରନ୍ତୁ, ରାଶି ଦିଅନ୍ତୁ।",
+          paytm_wallet:
+            "Paytm Wallet ଦ୍ୱାରା ଆପଣ ଦ୍ରୁତ ଓ ସୁରକ୍ଷିତ ପେମେଣ୍ଟ କରିପାରିବେ।",
+          paytm_security: "App ଲକ୍ ବ୍ୟବହାର କରନ୍ତୁ, OTP କିଛି ସହ ଶେୟାର୍ ନକରନ୍ତୁ।",
+
+          maps: "Google Maps ବ୍ୟବହାର ହୁଏ ଦିଶା ଓ ଅବସ୍ଥାନ ଜାଣିବାକୁ।",
+          maps_use:
+            "Google Maps ଖୋଲନ୍ତୁ, ସ୍ଥାନ ଟାଇପ୍ କରନ୍ତୁ, Directions ଚୟନ କରନ୍ତୁ।",
+          maps_traffic: "Traffic option ରେ ଟାପ୍ କରି live traffic ଦେଖନ୍ତୁ।",
+          maps_voice: "Start କରି voice navigation ଆରମ୍ଭ କରନ୍ତୁ।",
+          maps_nearby: "Nearby ବ୍ୟବହାର କରି ହୋଟେଲ୍, ଏ.ଟି.ଏମ୍ ଦେଖନ୍ତୁ।",
+          maps_offline: "Menu → Offline maps ରେ ଯାଇ ମାନଚିତ୍ର ଡାଉନଲୋଡ୍ କରନ୍ତୁ।",
+
+          default: "WhatsApp, Paytm କିମ୍ବା Maps ବିଷୟରେ ପଚାରନ୍ତୁ।",
+        },
+      };
+
+      function appendMessage(text, sender) {
+        const msg = document.createElement("div");
+        msg.className = `message ${sender}`;
+        msg.textContent = text;
+        chatBox.appendChild(msg);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+
+      function handleUserInput() {
+        const userText = input.value.trim().toLowerCase();
+        if (!userText) return;
+
+        const lang = languageSelector.value;
+        appendMessage(input.value, "user");
+        input.value = "";
+
+        setTimeout(() => {
+          let reply = "";
+          if (userText.includes("hello") || userText.includes("hi")) {
+            reply = responses[lang].hello;
+          } else if (userText.includes("whatsapp")) {
+            reply = responses[lang].whatsapp;
+          } else if (userText.includes("paytm")) {
+            reply = responses[lang].paytm;
+          } else if (userText.includes("map") || userText.includes("google")) {
+            reply = responses[lang].maps;
+          } else {
+            reply = responses[lang].default;
+          }
+          appendMessage(reply, "bot");
+        }, 500);
+      }
+
+      sendBtn.addEventListener("click", handleUserInput);
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") handleUserInput();
+      });
+
+      // Font Size Controls
+      function setFontSize(size) {
+        document.body.className = size;
+      }
+
+      // Initial Welcome
+      window.onload = () => {
+        appendMessage(
+          "👋 Welcome! Choose a language and ask about WhatsApp, Paytm, or Maps.",
+          "bot"
+        );
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DigiLearn</title>
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body class="medium">
+    <header class="header">
+      <h1 id="siteTitle">DigiLearn</h1>
+      <nav class="navbar">
+        <a id="navHome" href="index.html">Home</a>
+        <a id="navTutorials" href="tutorials.html">Tutorials</a>
+        <a id="navChat" href="chatbot.html">AI Chat</a>
+        <a id="navFeedback" href="feedback.html">Feedback</a>
+      </nav>
+    </header>
+
+    <main class="main">
+      <h2 id="tagline">Empowering Digital Literacy!</h2>
+
+      <p class="intro">
+        Welcome to DigiLearn – your trusted companion to learn essential digital
+        tools like WhatsApp, Paytm, Google Maps and more. This platform is
+        specially designed for parents and senior citizens to build digital
+        confidence in a simple and friendly way.
+      </p>
+
+      <p class="intro">
+        Explore easy tutorials, ask questions to our chatbot, and enjoy
+        accessibility features like font resizing and multiple languages. Let’s
+        make digital literacy fun, engaging, and stress-free!
+      </p>
+
+      <div class="controls">
+        <select id="languageSelector">
+          <option value="en">English</option>
+          <option value="hi">हिन्दी</option>
+          <option value="bn">বাংলা</option>
+          <option value="od">ଓଡ଼ିଆ</option>
+        </select>
+        <div class="font-controls">
+          <button onclick="setFontSize('small')">A-</button>
+          <button onclick="setFontSize('medium')">A</button>
+          <button onclick="setFontSize('large')">A+</button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-left">
+        <p>&copy; 2025 DigiLearn | Empowering Digital Literacy for All</p>
+      </div>
+      <div class="footer-right">
+        <a href="accessbility.html">Accessibility</a>
+
+        <a href="mailto:support@digilearn.org">Contact</a>
+      </div>
+    </footer>
+    <script src="js/main.js"></script>
+  </body>
+</html>

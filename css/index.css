@@ -1,0 +1,117 @@
+/* Reset and base styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: linear-gradient(to right, #f0f4ff, #ffffff);
+  color: #333;
+  transition: font-size 0.3s ease;
+}
+
+body.small { font-size: 14px; }
+body.medium { font-size: 18px; }
+body.large { font-size: 22px; }
+
+/* Header styling */
+.header {
+  background: linear-gradient(to right, #0077b6, #0077b6);
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  font-size: 28px;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: bold;
+  position: relative;
+  transition: 0.3s;
+}
+
+.navbar a::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: white;
+  transition: width 0.3s ease;
+}
+
+.navbar a:hover::after {
+  width: 100%;
+}
+
+/* Main content */
+.main {
+
+  
+
+  text-align: center;
+  padding: 3rem 1.5rem;
+  max-width: 800px;
+  margin: auto;
+}
+
+.main h2 {
+  font-size: 2.5rem;
+  color: #050505;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, #6b46c1, #805ad5);
+ 
+}
+
+.intro {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 1.5rem;
+  padding: 0 1rem;
+}
+
+/* Language and font controls */
+.controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+select, .font-controls button {
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+select:hover, .font-controls button:hover {
+  background-color: #caf0f8;
+  border-color: #805ad5;
+}
+
+/* Footer */
+.footer {
+  background-color: #caf0f8;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #666;
+  margin-top: 3rem;
+  border-top: 1px solid #ddd;
+}

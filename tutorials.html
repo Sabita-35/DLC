@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tutorials | DigiLearn</title>
+    <link rel="stylesheet" href="css/tutorials.css" />
+  </head>
+  <body class="medium">
+    <!-- Header -->
+    <header class="header">
+      <h1 id="siteTitle">DigiLearn</h1>
+      <nav class="navbar">
+        <a id="navHome" href="index.html">Home</a>
+        <a id="navTutorials" href="tutorials.html">Tutorials</a>
+        <a id="navChat" href="chatbot.html">AI Chat</a>
+        <a id="navFeedback" href="feedback.html">Feedback</a>
+      </nav>
+    </header>
+
+    <!-- Main Section -->
+    <main class="main">
+      <div class="top-bar">
+        <h2 id="tutorialsTitle">Digital Tool Tutorials</h2>
+        <div class="controls">
+          <select id="languageSelector">
+            <option value="en">English</option>
+            <option value="hi">हिन्दी</option>
+            <option value="bn">বাংলা</option>
+            <option value="od">ଓଡ଼ିଆ</option>
+          </select>
+          <div class="font-controls">
+            <button onclick="setFontSize('small')">A-</button>
+            <button onclick="setFontSize('medium')">A</button>
+            <button onclick="setFontSize('large')">A+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cards -->
+      <div class="cards">
+        <div class="card">
+          <img src="asset/whatsapp.jpg" alt="WhatsApp" />
+          <h3 id="waTitle">Learn WhatsApp</h3>
+          <p id="waDesc">Send messages, share media and make calls.</p>
+          <a href="https://youtu.be/pxMi0DdBMfw?si=3oGW92t1oxY7-pkw"
+            >Start Tutorial</a
+          >
+        </div>
+
+        <div class="card">
+          <img src="asset/paytm.jpg" alt="Paytm" />
+          <h3 id="paytmTitle">Learn Paytm</h3>
+          <p id="paytmDesc">Make payments, recharge and manage your wallet.</p>
+          <a href="https://youtu.be/jExQtcr0VRc?si=K8oFtFFlx3Z8ilTI"
+            >Start Tutorial</a
+          >
+        </div>
+
+        <div class="card">
+          <img src="asset/map.jpg" alt="Google Maps" />
+          <h3 id="mapsTitle">Learn Google Maps</h3>
+          <p id="mapsDesc">Find locations and get directions easily.</p>
+          <a href="https://youtu.be/QULMYsdWXpU?si=R2Ze2xN3BoZG--Bj"
+            >Start Tutorial</a
+          >
+        </div>
+      </div>
+    </main>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

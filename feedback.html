@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feedback | DigiLearn</title>
+    <link rel="stylesheet" href="css/feedback.css" />
+  </head>
+  <body class="medium">
+    <!-- Header -->
+    <header class="header">
+      <h1 id="siteTitle">DigiLearn</h1>
+      <nav class="navbar">
+        <a id="navHome" href="index.html">Home</a>
+        <a id="navTutorials" href="tutorials.html">Tutorials</a>
+        <a id="navChat" href="chatbot.html">AI Chat</a>
+        <a id="navFeedback" href="feedback.html">Feedback</a>
+      </nav>
+    </header>
+
+    <!-- Main -->
+    <main class="container">
+      <div class="top-bar">
+        <h2 id="feedbackTitle">Your Feedback</h2>
+        <div class="controls">
+          <select id="languageSelector">
+            <option value="en">English</option>
+            <option value="hi">हिन्दी</option>
+            <option value="bn">বাংলা</option>
+            <option value="od">ଓଡ଼ିଆ</option>
+          </select>
+          <button onclick="setFontSize('small')">A-</button>
+          <button onclick="setFontSize('medium')">A</button>
+          <button onclick="setFontSize('large')">A+</button>
+        </div>
+      </div>
+
+      <form id="feedbackForm">
+        <label id="feedbackNameLabel" for="name">Your Name (Optional)</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Enter your name"
+        />
+
+        <label id="feedbackAgeLabel" for="age">Your Age Group</label>
+        <select id="age" name="age">
+          <option>Below 30</option>
+          <option>30–50</option>
+          <option>50+</option>
+        </select>
+
+        <label id="feedbackMsgLabel" for="message"
+          >Your Suggestions or Feedback</label
+        >
+        <textarea
+          id="message"
+          name="message"
+          rows="4"
+          placeholder="Write your feedback..."
+        ></textarea>
+
+        <button type="submit" id="feedbackSubmitBtn">Submit Feedback</button>
+      </form>
+
+      <p id="feedbackThanks" class="thank-you hidden">
+        🎉 Thank you for your valuable feedback!
+      </p>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; 2025 DigiLearn. Making digital tools easy for everyone.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+      document
+        .getElementById("feedbackForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          this.reset();
+          document.getElementById("feedbackThanks").classList.remove("hidden");
+        });
+    </script>
+  </body>
+</html>
